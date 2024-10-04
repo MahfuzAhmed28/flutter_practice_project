@@ -12,35 +12,26 @@ class HelloWorld extends StatelessWidget{
       title: 'Welcome',
       //home: Text('Home'),
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        
         appBar: AppBar(
           title: Text('Home'),
           centerTitle: true,
         ),
-        body: Center(     // Center 1ta matro child rakhte pare
-          child: Text('Hello World We are writting our first flutter application',
-            //textAlign: TextAlign.right
-            //textAlign: TextAlign.center
-            //textAlign: TextAlign.left,
-            textAlign: TextAlign.justify,
-            maxLines: 1,
-            style: TextStyle(
-            fontSize: 20,
-            //color: Color(0xFFF0000),
-            color: Colors.red,
-            //fontWeight: FontWeight.bold,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1,
-            height: 1.5,
-            //backgroundColor: Colors.black,
-            wordSpacing: 0,
-            //decoration: TextDecoration.lineThrough,
-            //decoration: TextDecoration.overline,
-              //overflow: TextOverflow.fade,
-              overflow: TextOverflow.ellipsis,
-              decoration: TextDecoration.none,
-          ),),
-        ),
+        /*body: Image.asset('assets/images/shoe.jpg',
+        width: 400,
+        height: 400,
+        fit: BoxFit.scaleDown,
+        //fit:BoxFit.cover, Cover by zoom
+        //fit: BoxFit.fitHeight,
+        //fit: BoxFit.fitWidth,
+        //fit: BoxFit.contain,
+        //color: Colors.red,
+        //color: Colors.red.shade50,
+        alignment: Alignment.bottomCenter,),*/
+        body: Image.network('https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
+        width: 200,
+        height: 400,
+        fit: BoxFit.cover,),
       ),
       //title: ='Welcome to Flutter',
     );
