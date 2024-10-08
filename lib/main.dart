@@ -10,96 +10,151 @@ class HelloWorld extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,  //Remove Corner Debug Banner
       title: 'Welcome',
-      //home: Text('Home'),
-      home: Scaffold(
-        
-        appBar: AppBar(
-          title: Text('Home'),
-          centerTitle: true,
-        ),
-        /*body: Image.asset('assets/images/shoe.jpg',
-        width: 400,
-        height: 400,
-        fit: BoxFit.scaleDown,
-        //fit:BoxFit.cover, Cover by zoom
-        //fit: BoxFit.fitHeight,
-        //fit: BoxFit.fitWidth,
-        //fit: BoxFit.contain,
-        //color: Colors.red,
-        //color: Colors.red.shade50,
-        alignment: Alignment.bottomCenter,),*/
+      home: Home(),
+    );
+  }
+  
 
-        /*body: Image.network('https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
-        width: 200,
-        height: 400,
-        fit: BoxFit.cover,),*/
+}
 
-        /*body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+        backgroundColor: Colors.green,
+      ),
+      body: Center(
+        child: Column(
           children: [
-            Text('Hello'),
-            Text('World'),
-            Image.network('https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
-            width: 200,
-            height: 300,
-            fit: BoxFit.cover,),
-            Text('This is Shoe pic')
-          ],
-        ),*/
-        /*body: Row(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,  4 kore
-          mainAxisAlignment: MainAxisAlignment.spaceAround,  // 2 kore sob pase
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisSize: MainAxisSize.min,  //mainAxisAlignment k override kore
-          children: [
-            Text('Hello'),
-            Text('Another'),
-            Text('World'),
-            Image.network('https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
-              width: 100,),
-            Text('Shoe'),
-          ],
-        )*/
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Hello World'),
-            Row(
-              children: [
-                Text('Hello'),
-                Text('World'),
-                Image.network('https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
-                  width: 100,
-                  fit: BoxFit.cover,),
-                Text('Shoe'),
-              ],
+            SizedBox(
+              height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Image.network('https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg',
-                  width: 100,
-                  fit: BoxFit.cover,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('This'),
-                    Text('is'),
-                    Text('Nike new Version'),
-                  ],
-                )
-              ],
-            )
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.amberAccent,
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+                //padding: EdgeInsets.all(100),
+                //padding: EdgeInsets.only(top: 10,left: 10),
+                padding: EdgeInsets.symmetric(horizontal: 30,vertical: 20),
+                shadowColor: Colors.green,
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+
+                ),
+                side: BorderSide(
+                  color: Colors.green,
+                  width: 5,
+                ),
+                minimumSize: Size(100, 50),
+                //maximumSize: Size(200, 200)
+              ),
+              onPressed: (){
+                //print('Tap on Elaveted Button');
+                showDialog(
+                  barrierColor: Colors.green,
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Delete'),
+                      content: Text('Are You Sure?'),
+                      actions: [
+                        TextButton(onPressed: () {}, child: Text('Yes')),
+                        TextButton(onPressed: () {}, child: Text('No')),
+                      ],
+                    );
+                });
+              },
+              child: Text('Tap'),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              style: TextButton.styleFrom(),
+                onPressed: () {
+                  print('Text Button Pressed');
+                },
+                child: Text('Click Here'),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            IconButton(
+              style: IconButton.styleFrom(),
+              onPressed: () {
+                int a=10;
+                print('Icon Button Pressed ${a}');
+              },
+              icon: Icon(Icons.add),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(),
+              onPressed: () {
+                int a=10;
+                print('Icon Button Pressed ${a}');
+              },
+              //child: Icon(Icons.abc),
+              child: Text('Press'),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                print("Just On Tap");
+              },
+              onDoubleTap: () {
+                print('Double Tap');
+              },
+              onLongPress: () {
+                print('Long Press');
+              },
+              onLongPressCancel: () {
+                print('Long Press Cancel');
+              },
+              onLongPressEnd: (details) {
+                print('Long Press End');
+              },
+              child: Column(
+                children: [
+                  Text('Simple Button'),
+                  Text('Simple Button'),
+                  Text('Simple Button'),
+                  Text('Simple Button'),
+                ],
+              ),
+            ),
+            InkWell(
+              splashColor: Colors.green,
+            onTap: () {
+              print('Ink Well');
+            },
+            child: Text('Behave Like Button')
+            ),
           ],
         ),
       ),
-      //title: ='Welcome to Flutter',
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+    
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
-
 }
+
