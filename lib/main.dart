@@ -1,25 +1,31 @@
 import 'package:flutter/material.dart';
 
-void main()
-{
+void main() {
   runApp(HelloWorld());
 }
-class HelloWorld extends StatelessWidget{
+
+class HelloWorld extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,  //Remove Corner Debug Banner
+      debugShowCheckedModeBanner: false, //Remove Corner Debug Banner
       title: 'Welcome',
       home: Home(),
     );
   }
-  
-
 }
 
-
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+
+  List<String> friendList = [
+    'Mahfuz',
+    'Shorif',
+    'Sakib',
+    'Rafi',
+    'Nabil',
+    'Siam'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,141 +33,170 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
         backgroundColor: Colors.green,
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+        ],
+        //leading: Icon(Icons.add),  Basically we dont use leading
       ),
-      body: Center(
+      drawer: Drawer(
+        //elevation: 0,
+        //shadowColor: Colors.red,
+        backgroundColor: Colors.grey,
+        width: 300,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                //showAboutDialog(context: context);
-                showModalBottomSheet(
-                  //barrierColor: Colors.red,
-                  //backgroundColor: Colors.green.shade200,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  isScrollControlled: true,
-                  useSafeArea: true,
-                  enableDrag: false,
-                  context: context,
-                  builder: (ctx){
-                    return Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                  'Title',
-                                  style: TextStyle(
-                                    fontSize: 20
-                                  ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          height: 20,
-                          thickness: 5,
-                          color: Colors.green,
-                        ),
-                        Text('Sample'),
-                        Row(
-                          children: [
-                            ElevatedButton(onPressed: () {}, child: Text('Save')),
-                            ElevatedButton(onPressed: () {}, child: Text('Cancel')),
-                          ],
-                        )
-                        //Divider(),
-                        //Text('Yes'),
-                      ],
-                    );
-                  }
-                );
-              },
-              child: Text('Show dialoge'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: EdgeInsets.all(16),
-              child: TextField(
-                maxLength: 50,
-                onChanged: (String? value)
-                {
-                  print(value);
-                },
-                controller: TextEditingController(),
-                //obscureText: true,
-                maxLines: 1,
-                //keyboardType: TextInputType.phone,
-                enabled: true,
-                decoration: InputDecoration(
-                  hintText: 'Phone',
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w100,
-                  ),
-                  labelText: 'Phone Number',
-                  //label: Icon(Icons.add),
-                  prefixIcon: Icon(Icons.phone),
-                  suffixIcon: Icon(Icons.person),
-                  // prefix: Column(
-                  //   children: [
-                  //     Text('abcd'),
-                  //     Text('edgh'),
-                  //   ],
-                  // ),
-                  // suffix: Column(
-                  //   children: [
-                  //     Text('abcd'),
-                  //     Text('edgh'),
-                  //   ],
-                  // ),
-                  icon: Icon(Icons.ac_unit),
-                  //counterText: '',
-                  counterStyle: TextStyle(
-                    fontSize: 20
-                  ),
-                  fillColor: Colors.pink,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.green,
-                    )
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.green,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.red,
-                      width: 3
-                    )
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.blue
-                    )
-                  )
-
-                ),
-              ),
-            ),
-
-
-          ],
+          children: [Text('Random Drawer')],
         ),
       ),
+      /*bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        //backgroundColor: Colors.red,
+        selectedItemColor: Colors.pink,
+        unselectedItemColor: Colors.blue,
+        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        onTap: (int slectedIndex){
 
+        },
+
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Search'),
+        ]
+      ),*/ // Akhon use hoi na
+      bottomNavigationBar: NavigationBar(
+          selectedIndex: 1,
+          onDestinationSelected: (int slectedIndex) {
+
+          },
+          destinations: [
+            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
+          ]),
+      /*body: Scrollbar(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+              Text('jashcisdhci'),
+            ],
+          ),
+        ),
+      ),*/
+      body: Scrollbar(
+        thickness: 50,
+        interactive: true,
+        /*child: ListView(
+          scrollDirection: Axis.vertical,
+          reverse: false,
+          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+          children: [
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+            Text('jashcisdhci'),
+          ],
+        ),*/
+        /*child: ListView.builder(
+          itemCount: 100,
+          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+          itemBuilder: (context,index) {
+            return Text('item ${index}');
+          }
+        ),*/
+        child: ListView.builder(
+            itemCount: friendList.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(friendList[index]),
+              );
+            }),
+      ),
     );
   }
 }
-
