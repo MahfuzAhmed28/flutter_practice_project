@@ -26,7 +26,9 @@ class Home extends StatelessWidget {
     'Nabil',
     'Siam'
   ];
-
+  TextEditingController _emailTEControler=TextEditingController();
+  TextEditingController _passTEControler=TextEditingController();
+  GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,164 +41,118 @@ class Home extends StatelessWidget {
         ],
         //leading: Icon(Icons.add),  Basically we dont use leading
       ),
-      drawer: Drawer(
-        //elevation: 0,
-        //shadowColor: Colors.red,
-        backgroundColor: Colors.grey,
-        width: 300,
-        child: Column(
-          children: [Text('Random Drawer')],
-        ),
-      ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        //backgroundColor: Colors.red,
-        selectedItemColor: Colors.pink,
-        unselectedItemColor: Colors.blue,
-        showUnselectedLabels: false,
-        showSelectedLabels: true,
-        onTap: (int slectedIndex){
-
-        },
-
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Search'),
-        ]
-      ),*/ // Akhon use hoi na
-      bottomNavigationBar: NavigationBar(
-          selectedIndex: 1,
-          onDestinationSelected: (int slectedIndex) {
-
-          },
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.search), label: 'Search'),
-          ]),
-      /*body: Scrollbar(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-              Text('jashcisdhci'),
-            ],
-          ),
-        ),
+      /*body: ListView.builder(
+        itemCount: friendList.length,
+        itemBuilder: (context,index)
+        {
+          return ListTile(
+            title: Text(friendList[index]),
+            subtitle: Text('Friend no $index'),
+            trailing: Icon(Icons.arrow_forward),
+            leading: CircleAvatar(
+              child: Icon(Icons.person),
+            ),
+            onTap: () {
+              print('On Tap $index');
+            },
+            onLongPress: () {
+              print('On Long Tap $index');
+            },
+            tileColor: Colors.white38,
+            contentPadding: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
+            enabled: true,
+            dense: false,
+            titleTextStyle: TextStyle(fontSize: 20,color: Colors.red),
+            selected: false,
+            selectedColor: Colors.black,
+          );
+        }
       ),*/
-      body: Scrollbar(
-        thickness: 50,
-        interactive: true,
-        /*child: ListView(
-          scrollDirection: Axis.vertical,
-          reverse: false,
-          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-          children: [
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-            Text('jashcisdhci'),
-          ],
-        ),*/
-        /*child: ListView.builder(
-          itemCount: 100,
-          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-          itemBuilder: (context,index) {
-            return Text('item ${index}');
-          }
-        ),*/
-        child: ListView.builder(
-            itemCount: friendList.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(friendList[index]),
-              );
-            }),
-      ),
+      /*body: GridView(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 5
+
+        ),
+
+        children: [
+          Text('Hello'),
+          Text('Hello'),
+          Text('Hello'),
+          Text('Hello'),
+        ],
+      ),*/
+      /*body: GridView.builder(
+        itemCount: friendList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        itemBuilder: (contex, index)
+        {
+          return Center(child: Text(friendList[index]));
+        }*/
+       body: Padding(
+         padding: const EdgeInsets.all(16),
+         child: Form(
+           key: _formKey,
+           child: Column(
+             children: [
+              TextFormField(
+                autovalidateMode: AutovalidateMode.always,
+                //autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: _emailTEControler,
+                validator: (String? value)
+                {
+                  if(value==null || value!.isEmpty)
+                  {
+                    return 'Enter Your Email';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'email',
+                ),
+              ),
+               TextFormField(
+                 autovalidateMode: AutovalidateMode.always,
+                controller: _passTEControler,
+                validator: (String? value)
+                {
+                  if(value?.isEmpty ?? true)
+                  {
+                    return 'Enter your Password';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintText: 'password',
+                ),
+              ),
+               ElevatedButton(onPressed: (){
+                 /*String email=_emailTEControler.text;
+                 String password=_passTEControler.text;
+                 if(email.isNotEmpty && password.isNotEmpty)
+                 {
+                   print('Succesfully Log in');
+                 }
+                 else
+                 {
+                   print('Failed to Log in');
+                 }*/
+                 if(_formKey.currentState!.validate())
+                 {
+                   print('Succesfully Log in');
+                 }
+                 else
+                 {
+                   print('Failed to Log in');
+                 }
+               },
+                 child: Text('Tap')
+               )
+             ],
+           ),
+         ),
+       ),
     );
   }
 }
