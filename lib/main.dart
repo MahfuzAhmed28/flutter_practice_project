@@ -41,118 +41,96 @@ class Home extends StatelessWidget {
         ],
         //leading: Icon(Icons.add),  Basically we dont use leading
       ),
-      /*body: ListView.builder(
+      /*body: ListView.separated(
         itemCount: friendList.length,
-        itemBuilder: (context,index)
-        {
-          return ListTile(
-            title: Text(friendList[index]),
-            subtitle: Text('Friend no $index'),
-            trailing: Icon(Icons.arrow_forward),
-            leading: CircleAvatar(
-              child: Icon(Icons.person),
-            ),
-            onTap: () {
-              print('On Tap $index');
-            },
-            onLongPress: () {
-              print('On Long Tap $index');
-            },
-            tileColor: Colors.white38,
-            contentPadding: EdgeInsets.symmetric(horizontal: 24,vertical: 20),
-            enabled: true,
-            dense: false,
-            titleTextStyle: TextStyle(fontSize: 20,color: Colors.red),
-            selected: false,
-            selectedColor: Colors.black,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              Text(friendList[index]),
+              Divider(
+                height: 10,
+                thickness: 10,
+                color: Colors.red,
+                indent: 10,
+                endIndent: 10,
+              ),
+            ],
           );
-        }
+        },
+        separatorBuilder: (BuildContext context,int index) {
+          return Container(
+            //width: 50,
+            height: 10,
+
+            color: Colors.blue,
+          );
+          return Divider(
+            color: Colors.green,
+            indent: 10,
+          );
+        },
       ),*/
-      /*body: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 5
-
-        ),
-
+      body: Column(
         children: [
-          Text('Hello'),
-          Text('Hello'),
-          Text('Hello'),
-          Text('Hello'),
+          Row(
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: Colors.green.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3)
+                    )
+                  ]
+
+
+                ),
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.all(10),
+                child: Text('Hello'),
+              ),
+              Container(
+                width: 100,
+                height: 100,
+
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 5,
+                  ),
+                  //borderRadius: BorderRadius.circular(20),
+                  /*borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(20),
+
+                  )*/
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/shoe.jpg'),
+                    fit: BoxFit.cover,
+                    opacity: 0.9
+                  ),
+
+                ),
+                child: Text('Hello'),
+              )
+            ],
+          )
         ],
-      ),*/
-      /*body: GridView.builder(
-        itemCount: friendList.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (contex, index)
-        {
-          return Center(child: Text(friendList[index]));
-        }*/
-       body: Padding(
-         padding: const EdgeInsets.all(16),
-         child: Form(
-           key: _formKey,
-           child: Column(
-             children: [
-              TextFormField(
-                autovalidateMode: AutovalidateMode.always,
-                //autovalidateMode: AutovalidateMode.onUserInteraction,
-                controller: _emailTEControler,
-                validator: (String? value)
-                {
-                  if(value==null || value!.isEmpty)
-                  {
-                    return 'Enter Your Email';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'email',
-                ),
-              ),
-               TextFormField(
-                 autovalidateMode: AutovalidateMode.always,
-                controller: _passTEControler,
-                validator: (String? value)
-                {
-                  if(value?.isEmpty ?? true)
-                  {
-                    return 'Enter your Password';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintText: 'password',
-                ),
-              ),
-               ElevatedButton(onPressed: (){
-                 /*String email=_emailTEControler.text;
-                 String password=_passTEControler.text;
-                 if(email.isNotEmpty && password.isNotEmpty)
-                 {
-                   print('Succesfully Log in');
-                 }
-                 else
-                 {
-                   print('Failed to Log in');
-                 }*/
-                 if(_formKey.currentState!.validate())
-                 {
-                   print('Succesfully Log in');
-                 }
-                 else
-                 {
-                   print('Failed to Log in');
-                 }
-               },
-                 child: Text('Tap')
-               )
-             ],
-           ),
-         ),
-       ),
+      )
+
+
     );
   }
 }
