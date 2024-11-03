@@ -11,6 +11,17 @@ class HelloWorld extends StatelessWidget {
       debugShowCheckedModeBanner: false, //Remove Corner Debug Banner
       title: 'Welcome',
       home: Home(),
+      theme: ThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)
+              )
+          ),
+        )
+      ),
     );
   }
 }
@@ -94,6 +105,7 @@ class Settings extends StatelessWidget {
           children: [
 
             ElevatedButton(
+
                 onPressed: () {
                   Navigator.pop(context);
                 },
