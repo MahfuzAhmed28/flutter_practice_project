@@ -1,23 +1,17 @@
+
 import 'package:flutter/material.dart';
 
 void main()
 {
-  runApp(SimpleApp());
+  runApp(MyApp());
 }
-class SimpleApp extends StatelessWidget {
-  const SimpleApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      /*initialRoute: '/home',
-      routes: {
-        '/home': (context) =>Home(),
-        '/profile': (context) =>Profile(),
-        '/setting': (context) =>Setting()
-      },*/
-      home: CounterScreen(),
+      home: Home(),
     );
   }
 }
@@ -27,123 +21,78 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize=MediaQuery.of(context).size;
+    //Size screenSize=MediaQuery.sizeOf(context);
+    print(screenSize.height);
+    print(screenSize.width);
+    print(screenSize.flipped);
+    print(screenSize.aspectRatio);
+    print(screenSize.shortestSide);
+    print(screenSize.longestSide);
+    print(MediaQuery.of(context).devicePixelRatio);
+    print(MediaQuery.of(context).orientation);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-      body: Column(
+      backgroundColor: Colors.black26,
+      /*appBar: AppBar(
+        title: Text('Hello'),
+      ),*/
+      /*body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: () {
-              /*Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Profile()));*/
-              //Navigator.pushNamed(context, '/profile');
-              Navigator.pushReplacementNamed(context, '/profile');
-              },
-
-            child: Text('Goto Profile'))
+          Wrap(
+            alignment: WrapAlignment.spaceAround,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+              ElevatedButton(onPressed: () {}, child: Text('Button')),
+            ],
+          )
         ],
-      ),
-    );
-  }
-}
+      ),*/
+      /*body: LayoutBuilder(
+          builder: (BuildContext context,BoxConstraints constraints){
+            return Center(
+              child: Text('${constraints.maxHeight} ${constraints.maxWidth}'),
+            );
+          }
+      )*/
+      body: OrientationBuilder(
+        builder: (context,orientation){
+          return Center(child: Text('${orientation}'));
+        }
+      )
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              /*Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Setting()));*/
-              Navigator.pushReplacementNamed(context, '/setting');
-            },
-            child: Text('Settings'))
-        ],
-      ),
     );
   }
 }
 
 
-class Setting extends StatelessWidget {
-  const Setting({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Setting'),
-      ),
-      body: Column(
-        children: [
-          ElevatedButton(
-            onPressed: () {
-              //Navigator.pushNamed(context, '/home');
-              Navigator.pushNamedAndRemoveUntil(context, '/home', (predicate)=>false);
-            },
-            child: Text('Home'))
-        ],
-      ),
-    );
-  }
-}
-
-/*class CounterScreen extends StatelessWidget {
-  CounterScreen({super.key});
-  int counter=0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Counter'),
-      ),
-      body: Center(
-          child: Text('Counter Value is $counter'),
-      ),
-      floatingActionButton: FloatingActionButton(onPressed: () {counter++;},child: Icon(Icons.add),),
-    );
-  }
-}*/
 
 
-class CounterScreen extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() {
-    return CounterScreenState();
-  }
-}
-
-class CounterScreenState extends State<CounterScreen>
-{
-  int counter=0;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Counter'),
-      ),
-      body: Center(
-        child: Text('Counter Value is $counter'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counter=counter+1;
-          print(counter);
-          setState(() {});
-        },
-        child: const Icon(Icons.add),),//cost use korle seti r rebuild hobe na
-    );
-  }
-
-}
 
 
