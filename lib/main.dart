@@ -21,70 +21,99 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize=MediaQuery.of(context).size;
-    //Size screenSize=MediaQuery.sizeOf(context);
-    print(screenSize.height);
-    print(screenSize.width);
-    print(screenSize.flipped);
-    print(screenSize.aspectRatio);
-    print(screenSize.shortestSide);
-    print(screenSize.longestSide);
-    print(MediaQuery.of(context).devicePixelRatio);
-    print(MediaQuery.of(context).orientation);
+    
     return Scaffold(
       backgroundColor: Colors.black26,
       /*appBar: AppBar(
         title: Text('Hello'),
       ),*/
       /*body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Wrap(
-            alignment: WrapAlignment.spaceAround,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-              ElevatedButton(onPressed: () {}, child: Text('Button')),
-            ],
-          )
+          SizedBox(
+            width: 300,
+            height: 300,
+            child: ColoredBox(
+              color: Colors.black,
+              child: FractionallySizedBox(
+                heightFactor: 0.5,
+                widthFactor: 0.7,
+                //alignment: Alignment.topCenter,
+                alignment: Alignment(4,3),
+                child: ColoredBox(color: Colors.red),
+              ),
+            )
+          ),
+
+          
         ],
       ),*/
-      /*body: LayoutBuilder(
-          builder: (BuildContext context,BoxConstraints constraints){
-            return Center(
-              child: Text('${constraints.maxHeight} ${constraints.maxWidth}'),
-            );
-          }
-      )*/
-      body: OrientationBuilder(
-        builder: (context,orientation){
-          return Center(child: Text('${orientation}'));
-        }
-      )
+      /*body: AspectRatio(
+        aspectRatio: 16/9,
+        child: ColoredBox(color: Colors.orange),
+
+      ),*/
+      /*body: Column(
+        children: [
+          Flexible(
+            fit: FlexFit.tight,
+            child: SizedBox(
+              width: double.maxFinite,
+              height: 100,
+              child: ColoredBox(color: Colors.black)
+            ),
+          ),
+          Expanded(
+            child: SizedBox(
+                width: double.maxFinite,
+                height: 100,
+                child: ColoredBox(color: Colors.orange)
+            ),
+          ),
+          Flexible(
+            fit: FlexFit.tight,
+            flex: 2,
+            child: SizedBox(
+                width: double.maxFinite,
+                height: 100,
+                child: ColoredBox(color: Colors.red)
+            ),
+          ),
+        ],
+      ),*/
+      body: SafeArea(
+        top: true,
+        child: Tooltip(
+          message: 'HHHH',
+          exitDuration: Duration(seconds: 2),
+          triggerMode: TooltipTriggerMode.tap,
+          child: Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 100,
+                  child: ColoredBox(color: Colors.red),
+                )
+              ),
+              Expanded(
+                flex: 2,
+                  child: Container(
+                    height: 100,
+                    child: ColoredBox(color: Colors.green),
+                  )
+              ),
+              Expanded(
+                  child: Container(
+                    height: 100,
+                    child: ColoredBox(color: Colors.yellowAccent),
+                  )
+              ),
+            ],
+          ),
+        ),
+      ),
+
+
+
 
 
     );
