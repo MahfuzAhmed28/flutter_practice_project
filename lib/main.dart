@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 void main()
 {
   runApp(DevicePreview(
@@ -27,103 +28,52 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    Size size=MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: Colors.black26,
-      /*appBar: AppBar(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
         title: Text('Hello'),
+      ),
+      /*body: Center(
+        child: Text(_getDeviceName(size.width)),
       ),*/
-      /*body: Column(
-        children: [
-          SizedBox(
-            width: 300,
-            height: 300,
-            child: ColoredBox(
-              color: Colors.black,
-              child: FractionallySizedBox(
-                heightFactor: 0.5,
-                widthFactor: 0.7,
-                //alignment: Alignment.topCenter,
-                alignment: Alignment(4,3),
-                child: ColoredBox(color: Colors.red),
-              ),
-            )
-          ),
-
-          
-        ],
-      ),*/
-      /*body: AspectRatio(
-        aspectRatio: 16/9,
-        child: ColoredBox(color: Colors.orange),
-
-      ),*/
-      /*body: Column(
-        children: [
-          Flexible(
-            fit: FlexFit.tight,
-            child: SizedBox(
-              width: double.maxFinite,
-              height: 100,
-              child: ColoredBox(color: Colors.black)
-            ),
-          ),
-          Expanded(
-            child: SizedBox(
-                width: double.maxFinite,
-                height: 100,
-                child: ColoredBox(color: Colors.orange)
-            ),
-          ),
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 2,
-            child: SizedBox(
-                width: double.maxFinite,
-                height: 100,
-                child: ColoredBox(color: Colors.red)
-            ),
-          ),
-        ],
-      ),*/
-      body: SafeArea(
-        top: true,
-        child: Tooltip(
-          message: 'HHHH',
-          exitDuration: Duration(seconds: 2),
-          triggerMode: TooltipTriggerMode.tap,
-          child: Row(
-            children: [
-              Expanded(
-                child: Container(
-                  height: 100,
-                  child: ColoredBox(color: Colors.red),
-                )
-              ),
-              Expanded(
-                flex: 2,
-                  child: Container(
-                    height: 100,
-                    child: ColoredBox(color: Colors.green),
-                  )
-              ),
-              Expanded(
-                  child: Container(
-                    height: 100,
-                    child: ColoredBox(color: Colors.yellowAccent),
-                  )
-              ),
-            ],
-          ),
+      body: Center(
+        /*child: ResponsiveBuilder(
+          builder: (context, sizingInformation){
+            if(sizingInformation.isDesktop){
+              return Text('Desktopp');
+            }
+            else if(sizingInformation.isTablet){
+              return Text('Tablett');
+            }
+            else{
+              return Text('Mobilee');
+            }
+          }
+        ),*/
+        child: ScreenTypeLayout.builder(
+          mobile: (context) => const Text('Mobile'),
+          desktop: (context) => const Text('Desktop'),
+          tablet: (context) => const Text('Tablet'),
         ),
       ),
 
 
-
-
-
     );
   }
+  /*String _getDeviceName(double screenWidth)
+  {
+    if(screenWidth <= 640)
+    {
+      return 'Mobile';
+    }
+    else if(screenWidth > 640 && screenWidth <=1008){
+      return 'Tablet';
+    }
+    else{
+      return 'Desktop';
+    }
+  }*/
 }
 
 
