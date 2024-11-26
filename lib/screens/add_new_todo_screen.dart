@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_practice_project/screens/todo.dart';
-import 'package:flutter_practice_project/screens/todo.dart';
+import 'package:flutter_practice_project/models/todo.dart';
 
 class AddNewTodoScreen extends StatefulWidget {
   const AddNewTodoScreen({super.key});

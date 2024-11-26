@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_project/screens/add_new_todo_screen.dart';
-import 'package:flutter_practice_project/screens/todo.dart';
+import 'package:flutter_practice_project/models/todo.dart';
 import 'package:flutter_practice_project/screens/update_todo_screen.dart';
 
 class TodoListScreen extends StatefulWidget {
@@ -72,7 +72,17 @@ class _TodoListScreenState extends State<TodoListScreen> {
                 ],
               ),
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateTodoScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UpdateTodoScreen(
+                      todo: todo,
+                      onUpdateTodo: (Todo updatedTodo){
+                        _updateTodo(index, updatedTodo);
+                      },
+                    )
+                  )
+                );
               },
             );
           }
