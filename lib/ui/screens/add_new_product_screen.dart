@@ -15,6 +15,8 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
   final TextEditingController _imageTEController= TextEditingController();
   final TextEditingController _quantityTEController= TextEditingController();
   final TextEditingController _codeTEController= TextEditingController();
+
+  final GlobalKey<FormState> _formKey= GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +34,12 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
 
   Widget _buildProductForm() {
     return Form(
+      key: _formKey,
         child: Column(
           children: [
             TextFormField(
               controller: _nameTEController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 hintText: 'Name',
                 labelText: 'Product Name',
@@ -49,6 +53,8 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
             ),
             TextFormField(
               controller: _priceTEController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Price',
                 labelText: 'Product Price',
@@ -62,6 +68,8 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
             ),
             TextFormField(
               controller: _totalPriceTEController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Total Price',
                 labelText: 'Product Total Price',
@@ -75,6 +83,8 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
             ),
             TextFormField(
               controller: _quantityTEController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 hintText: 'Quantity',
                 labelText: 'Product Quantity',
@@ -88,6 +98,7 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
             ),
             TextFormField(
               controller: _codeTEController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 hintText: 'Code',
                 labelText: 'Product Code',
@@ -101,7 +112,14 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
             ),
             //TextFormField(),
             SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {}, child: Text('Add Product'))
+            ElevatedButton(
+              onPressed: ()
+              {
+                if(_formKey.currentState!.validate()){
+
+                }
+              },
+              child: Text('Add Product'))
           ],
         ),
       );
