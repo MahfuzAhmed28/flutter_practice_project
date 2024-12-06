@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class AddNewProductScreen extends StatefulWidget {
   const AddNewProductScreen({super.key});
@@ -17,6 +20,9 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
   final TextEditingController _codeTEController= TextEditingController();
 
   final GlobalKey<FormState> _formKey= GlobalKey<FormState>();
+
+  bool _addNewProductInProgress=false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,17 +118,65 @@ class _AddNewProductScreeState extends State<AddNewProductScreen> {
             ),
             //TextFormField(),
             SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: ()
-              {
-                if(_formKey.currentState!.validate()){
-
-                }
-              },
-              child: Text('Add Product'))
+            Visibility(
+              visible: _addNewProductInProgress==false,
+              replacement: Center(
+                child: CircularProgressIndicator(),
+              ),
+              child: ElevatedButton(
+                onPressed: ()
+                {
+                  if(_formKey.currentState!.validate()){
+                    _addNewProduct();
+                  }
+                },
+                child: Text('Add Product')),
+            )
           ],
         ),
       );
+  }
+
+  Future<void> _addNewProduct() async{
+    _addNewProductInProgress=true;
+    setState(() {});
+    Uri uri=Uri.parse('https://crud.teamrabbil.com/api/v1/CreateProduct');
+
+    Map<String,dynamic> requestBody={
+      //"Img":"",
+      "ProductCode":_codeTEController.text.trim(),
+      "ProductName":_nameTEController.text.trim(),
+      "Qty":_quantityTEController.text.trim(),
+      "TotalPrice":_totalPriceTEController.text.trim(),
+      "UnitPrice":_priceTEController.text.trim(),
+    };
+
+    Response response=await post(
+      uri,
+      headers: {
+        'Content-type':'application/json'
+      },
+      body: jsonEncode(requestBody),
+    );
+    print(response.statusCode);
+    print(response.body);
+    _addNewProductInProgress=false;
+    setState(() {});
+    if(response.statusCode==200){
+      _clearTextFields();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('New product added')));
+    }
+    else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('New product added failded. Try again')));
+    }
+  }
+
+  void _clearTextFields(){
+    _codeTEController.clear();
+    _nameTEController.clear();
+    _priceTEController.clear();
+    _quantityTEController.clear();
+    _totalPriceTEController.clear();
   }
 
   @override
